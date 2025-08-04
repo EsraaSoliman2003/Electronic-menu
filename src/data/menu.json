@@ -1,0 +1,66 @@
+{
+  "المشويات": [
+    {
+      "name": "شيش طاووق",
+      "price": "60",
+      "image": "/imgs/plate1.png",
+      "details": "دجاج متبل مشوي على الفحم + أرز + سلطة"
+    },
+    {
+      "name": "كفتة مشوية",
+      "price": "58",
+      "image": "/imgs/plate2.png",
+      "details": "كفتة لحم مشوية + طحينة + عيش بلدي"
+    },
+    {
+      "name": "ريش ضاني",
+      "price": "85",
+      "image": "/imgs/plate3.png",
+      "details": "ريش ضاني متبلة + خضار مشوي + أرز بسمتي"
+    },
+    {
+      "name": "صدور دجاج مشوي",
+      "price": "62",
+      "image": "/imgs/plate4.png",
+      "details": "دجاج مشوي + بطاطس مشوية + سلطة"
+    },
+    {
+      "name": "مكس مشاوي",
+      "price": "95",
+      "image": "/imgs/plate5.png",
+      "details": "شيش + كفتة + كباب + أرز + سلطة"
+    }
+  ],
+  "الساندويتشات": [
+    {
+      "name": "ساندويتش شاورما لحم",
+      "price": "40",
+      "image": "/imgs/sandwitch1.png",
+      "details": "لحم شاورما + طحينة + مخلل"
+    },
+    {
+      "name": "ساندويتش شاورما دجاج",
+      "price": "38",
+      "image": "/imgs/sandwitch2.png",
+      "details": "شاورما دجاج + ثومية + بطاطس"
+    },
+    {
+      "name": "ساندويتش سجق",
+      "price": "35",
+      "image": "/imgs/sandwitch3.png",
+      "details": "سجق بلدي + بصل + فلفل ألوان"
+    },
+    {
+      "name": "ساندويتش كبدة",
+      "price": "36",
+      "image": "/imgs/sandwitch4.png",
+      "details": "كبدة اسكندراني + طماطم + شطة"
+    },
+    {
+      "name": "ساندويتش طعمية",
+      "price": "20",
+      "image": "/imgs/sandwitch5.png",
+      "details": "طعمية + سلطة + عيش بلدي"
+    }
+  ]
+}
