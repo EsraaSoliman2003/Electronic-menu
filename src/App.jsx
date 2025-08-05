@@ -48,7 +48,7 @@ function App() {
 
       <div style={{ position: "relative", zIndex: 1 }}>
         {/* اللوجو */}
-        <div className="fixed top-6 left-6 z-50">
+        <div className="fixed top-3 left-3 z-50">
           <img
             src={logo}
             alt="Logo"
