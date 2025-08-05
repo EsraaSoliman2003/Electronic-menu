@@ -36,6 +36,7 @@ function SettingsDrawer({
           backgroundColor: "#fff",
           overflow: "hidden"
         },
+        direction: "rtl"
       }}
     >
       {/* زر الإغلاق */}
