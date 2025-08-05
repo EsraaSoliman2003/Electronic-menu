@@ -1,9 +1,8 @@
 import { useState } from "react";
 import menuData from "../data/menu.json";
-import ContactDrawer from "./ContactDrawer.jsx";
-import colors from "../styles/colors";
+import EditDialog from "./EditDialog";
 
-function MenuTabs() {
+function MenuTabs({ colors, isEdit }) {
   const categories = Object.keys(menuData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   function hexToRgba(hex, alpha = 1) {
@@ -13,8 +12,68 @@ function MenuTabs() {
     return `rgba(${r}, ${g}, ${b}, ${alpha})`;
   }
 
+  const [data, setData] = useState(menuData);
+
+  const handleDelete = (category, itemIndex) => {
+    const newData = { ...data };
+    newData[category] = newData[category].filter((_, i) => i !== itemIndex);
+    setData(newData);
+  };
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [editValues, setEditValues] = useState({
+    name: "",
+    details: "",
+    price: "",
+  });
+  const [editItemIndex, setEditItemIndex] = useState(null);
+  const [editCategory, setEditCategory] = useState(null);
+
+  const handleEdit = (category, index) => {
+    const item = data[category][index];
+    setEditValues({
+      name: item.name,
+      details: item.details,
+      price: item.price,
+    });
+    setEditCategory(category);
+    setEditItemIndex(index);
+    setEditDialogOpen(true);
+  };
+
+  const handleSaveEdit = () => {
+    const newData = { ...data };
+    newData[editCategory][editItemIndex] = {
+      ...newData[editCategory][editItemIndex],
+      ...editValues,
+      price: parseFloat(editValues.price),
+    };
+    setData(newData);
+    setEditDialogOpen(false);
+  };
+
+  const [addDialogOpen, setAddDialogOpen] = useState(false);
+  const [newItem, setNewItem] = useState({
+    name: "",
+    details: "",
+    price: "",
+    image: "",
+  });
+
+  const handleSaveNewItem = () => {
+    const newData = { ...data };
+    const item = {
+      ...newItem,
+      price: parseFloat(newItem.price),
+      image: newItem.image || "/imgs/placeholder.jpg", // صورة افتراضية لو مفيش
+    };
+    newData[selectedCategory] = [...newData[selectedCategory], item];
+    setData(newData);
+    setAddDialogOpen(false);
+    setNewItem({ name: "", details: "", price: "", image: "" });
+  };
+
   return (
-    <div className="max-w-6xl mx-auto py-10 px-4 space-y-10">
+    <div className="max-w-6xl mx-auto py-10 px-4">
       {/* التبويبات */}
       <div
         style={{
@@ -33,9 +92,7 @@ function MenuTabs() {
               key={category}
               onClick={() => setSelectedCategory(category)}
               style={{
-                backgroundColor: isActive
-                  ? colors.primary
-                  : colors.white,
+                backgroundColor: isActive ? colors.primary : colors.white,
                 color: isActive ? colors.white : colors.darkGray,
                 padding: "0.5rem 1rem",
                 borderRadius: "9999px",
@@ -69,9 +126,28 @@ function MenuTabs() {
         })}
       </div>
 
+      {isEdit && (
+        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+          <button
+            onClick={() => setAddDialogOpen(true)}
+            style={{
+              backgroundColor: colors.primary,
+              color: "#fff",
+              padding: "0.5rem 1rem",
+              borderRadius: "8px",
+              fontWeight: "bold",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            + إضافة عنصر
+          </button>
+        </div>
+      )}
+
       {/* الأصناف */}
       <div className="space-y-8">
-        {menuData[selectedCategory].map((item, index) => (
+        {data[selectedCategory].map((item, index) => (
           <div
             key={item.name + index}
             className={`flex flex-col md:flex-row ${
@@ -124,7 +200,6 @@ function MenuTabs() {
               >
                 {item.details}
               </p>
-
               <p
                 style={{
                   color: colors.primary,
@@ -134,11 +209,67 @@ function MenuTabs() {
               >
                 ${item.price}
               </p>
+
+              {isEdit && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "1rem",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  <button
+                    onClick={() => handleEdit(selectedCategory, index)}
+                    style={{
+                      backgroundColor: "#2563eb",
+                      color: "white",
+                      padding: "0.25rem 0.75rem",
+                      border: "none",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    تعديل
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(selectedCategory, index)}
+                    style={{
+                      backgroundColor: "#dc2626",
+                      color: "white",
+                      padding: "0.25rem 0.75rem",
+                      border: "none",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    حذف
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
-      <ContactDrawer />
+      <EditDialog
+        open={editDialogOpen}
+        onClose={() => setEditDialogOpen(false)}
+        values={editValues}
+        onChange={setEditValues}
+        onSave={handleSaveEdit}
+      />
+      <EditDialog
+        open={addDialogOpen}
+        onClose={() => setAddDialogOpen(false)}
+        values={newItem}
+        onChange={setNewItem}
+        onSave={handleSaveNewItem}
+        title="إضافة عنصر جديد"
+        isAdding={true}
+      />
     </div>
   );
 }

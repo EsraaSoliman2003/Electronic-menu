@@ -7,7 +7,6 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import Typography from "@mui/material/Typography";
 import CallIcon from "@mui/icons-material/Call";
-import colors from "../styles/colors";
 
 // helpers/colorUtils.js
 function hexToRgba(hex, alpha = 1) {
@@ -17,7 +16,7 @@ function hexToRgba(hex, alpha = 1) {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export default function ContactDrawer() {
+export default function ContactDrawer({ colors, isDrawerOpen }) {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -108,12 +107,13 @@ export default function ContactDrawer() {
           },
           position: "fixed",
           bottom: 24,
-          right: 24,
+          right: !isDrawerOpen ? 24 : 260,
           width: 60,
           height: 60,
           color: "#fff",
           boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
           zIndex: 1300,
+          transition: "0.2s",
         }}
       >
         <ModeCommentOutlinedIcon fontSize="large" />
