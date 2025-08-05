@@ -86,10 +86,10 @@ function MenuTabs({ colors, isEdit }) {
           flexWrap: "wrap",
           justifyContent: "center",
           gap: "1rem",
-          marginBottom: "1.5rem",
           direction: "rtl",
           maxWidth: isSmallScreen && "300px",
           margin: "auto",
+          marginBottom: "1.5rem",
         }}
       >
         {categories.map((category) => {
