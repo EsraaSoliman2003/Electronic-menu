@@ -1,8 +1,13 @@
 import { useState } from "react";
 import menuData from "../data/menu.json";
 import EditDialog from "./EditDialog";
+import { useMediaQuery } from "@mui/material";
+// import { useTheme } from "@mui/material/styles";
 
 function MenuTabs({ colors, isEdit }) {
+  // const theme = useTheme();
+  const isSmallScreen = useMediaQuery("(max-width:700px)");
+
   const categories = Object.keys(menuData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   function hexToRgba(hex, alpha = 1) {
@@ -83,6 +88,8 @@ function MenuTabs({ colors, isEdit }) {
           gap: "1rem",
           marginBottom: "1.5rem",
           direction: "rtl",
+          maxWidth: isSmallScreen && "300px",
+          margin: "auto",
         }}
       >
         {categories.map((category) => {
