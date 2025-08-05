@@ -13,7 +13,6 @@ function App() {
             className="w-20 md:w-24 h-auto drop-shadow-md"
           />
         </div>
-
         <MenuTabs />
       </div>
     </div>

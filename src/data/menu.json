@@ -33,31 +33,31 @@
   ],
   "الساندويتشات": [
     {
-      "name": "ساندويتش شاورما لحم",
+      "name": "شاورما لحم",
       "price": "40",
       "image": "/imgs/sandwitch1.png",
       "details": "لحم شاورما + طحينة + مخلل"
     },
     {
-      "name": "ساندويتش شاورما دجاج",
+      "name": "شاورما دجاج",
       "price": "38",
       "image": "/imgs/sandwitch2.png",
       "details": "شاورما دجاج + ثومية + بطاطس"
     },
     {
-      "name": "ساندويتش سجق",
+      "name": "سجق",
       "price": "35",
       "image": "/imgs/sandwitch3.png",
       "details": "سجق بلدي + بصل + فلفل ألوان"
     },
     {
-      "name": "ساندويتش كبدة",
+      "name": "كبدة",
       "price": "36",
       "image": "/imgs/sandwitch4.png",
       "details": "كبدة اسكندراني + طماطم + شطة"
     },
     {
-      "name": "ساندويتش طعمية",
+      "name": "طعمية",
       "price": "20",
       "image": "/imgs/sandwitch5.png",
       "details": "طعمية + سلطة + عيش بلدي"

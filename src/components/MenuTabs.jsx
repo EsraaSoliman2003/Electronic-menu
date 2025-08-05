@@ -1,10 +1,17 @@
 import { useState } from "react";
 import menuData from "../data/menu.json";
 import ContactDrawer from "./ContactDrawer.jsx";
+import colors from "../styles/colors";
 
 function MenuTabs() {
   const categories = Object.keys(menuData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  function hexToRgba(hex, alpha = 1) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
 
   return (
     <div className="max-w-6xl mx-auto py-10 px-4 space-y-10">
@@ -26,14 +33,16 @@ function MenuTabs() {
               key={category}
               onClick={() => setSelectedCategory(category)}
               style={{
+                backgroundColor: isActive
+                  ? colors.primary
+                  : colors.white,
+                color: isActive ? colors.white : colors.darkGray,
                 padding: "0.5rem 1rem",
                 borderRadius: "9999px",
                 fontSize: "0.875rem",
                 fontWeight: "600",
                 cursor: "pointer",
                 transition: "all 0.2s ease",
-                backgroundColor: isActive ? "#f97316" : "#f3f4f6",
-                color: isActive ? "white" : "#4b5563",
                 border: "none",
                 outline: "none",
                 position: "relative",
@@ -41,8 +50,12 @@ function MenuTabs() {
               }}
               onMouseEnter={(e) => {
                 if (!isActive)
-                  e.currentTarget.style.backgroundColor = "#fed7aa";
-                if (!isActive) e.currentTarget.style.color = "#ea580c";
+                  e.currentTarget.style.backgroundColor = hexToRgba(
+                    colors.primary,
+                    0.3
+                  );
+
+                if (!isActive) e.currentTarget.style.color = colors.primary;
               }}
               onMouseLeave={(e) => {
                 if (!isActive)
@@ -93,13 +106,19 @@ function MenuTabs() {
                 gap: "8px",
               }}
             >
-              <h3 style={{ fontSize: "1.25rem", fontWeight: "600" }}>
+              <h3
+                style={{
+                  fontSize: "1.25rem",
+                  fontWeight: "600",
+                  color: colors.white,
+                }}
+              >
                 {item.name}
               </h3>
               <p
                 style={{
                   fontSize: "0.95rem",
-                  color: "#ddd",
+                  color: colors.white,
                   margin: "0.5rem 0",
                 }}
               >
@@ -108,7 +127,7 @@ function MenuTabs() {
 
               <p
                 style={{
-                  color: "#facc15",
+                  color: colors.primary,
                   fontSize: "1.125rem",
                   fontWeight: "bold",
                 }}

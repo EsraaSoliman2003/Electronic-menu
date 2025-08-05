@@ -7,6 +7,16 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import Typography from "@mui/material/Typography";
 import CallIcon from "@mui/icons-material/Call";
+import colors from "../styles/colors";
+
+// helpers/colorUtils.js
+function hexToRgba(hex, alpha = 1) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 export default function ContactDrawer() {
   const [open, setOpen] = React.useState(false);
 
@@ -92,17 +102,17 @@ export default function ContactDrawer() {
       <IconButton
         onClick={toggleDrawer(true)}
         sx={{
+          backgroundColor: colors.primary,
+          "&:hover": {
+            backgroundColor: colors.primary,
+          },
           position: "fixed",
           bottom: 24,
           right: 24,
           width: 60,
           height: 60,
-          backgroundColor: "#ff9800",
           color: "#fff",
           boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-          "&:hover": {
-            backgroundColor: "#fb8c00",
-          },
           zIndex: 1300,
         }}
       >
@@ -117,8 +127,11 @@ export default function ContactDrawer() {
         disableScrollLock={true}
         PaperProps={{
           sx: {
-            background:
-              "linear-gradient(to bottom, rgba(255, 248, 240, 0.85), rgba(255, 224, 178, 0.85))",
+            background: `linear-gradient(
+              to bottom,
+              rgba(255, 248, 240, 0.85),
+              ${hexToRgba(colors.primary, 0.85)}
+            )`,
             backdropFilter: "blur(4px)",
             padding: 4,
           },
