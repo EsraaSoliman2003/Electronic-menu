@@ -1,5 +1,7 @@
 import { Drawer, IconButton, Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const drawerWidth = 240;
 
@@ -17,17 +19,22 @@ function SettingsDrawer({
     { name: "darkGray", label: "الكتابة" },
   ];
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Drawer
-      variant="persistent"
-      anchor="right"
+      variant={isSmallScreen ? "temporary" : "persistent"}
+      anchor={isSmallScreen ? "top" : "right"}
       open={open}
+      onClose={onClose}
       sx={{
         "& .MuiDrawer-paper": {
-          width: drawerWidth,
+          width: isSmallScreen ? "100%" : drawerWidth,
           padding: 2,
           boxSizing: "border-box",
           backgroundColor: "#fff",
+          overflow: "hidden"
         },
       }}
     >

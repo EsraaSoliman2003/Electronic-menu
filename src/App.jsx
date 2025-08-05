@@ -5,6 +5,7 @@ import ContactDrawer from "./components/ContactDrawer";
 import SettingsDrawer from "./components/SettingsDrawer";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { IconButton } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
 // الألوان الافتراضية
 const defaultColors = {
@@ -31,6 +32,8 @@ function App() {
       [key]: value,
     }));
   };
+
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   return (
     <div style={{ position: "relative", minHeight: "100vh" }}>
@@ -82,12 +85,17 @@ function App() {
         <div
           style={{
             transition: "margin 0.3s ease",
-            marginRight: settingsOpen ? `${drawerWidth}px` : 0,
+            marginRight:
+              settingsOpen && !isSmallScreen ? `${drawerWidth}px` : 0,
           }}
         >
           <MenuTabs isEdit={settingsOpen} colors={colors} />
         </div>
-        <ContactDrawer colors={colors} isDrawerOpen={settingsOpen} />
+
+        <ContactDrawer
+          colors={colors}
+          isDrawerOpen={settingsOpen && !isSmallScreen}
+        />
       </div>
     </div>
   );
