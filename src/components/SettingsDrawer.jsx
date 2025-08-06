@@ -37,7 +37,7 @@ function SettingsDrawer({
           backgroundColor: "#fff",
           overflow: "hidden",
           overflowY: "auto",
-          height: isSmallScreen && "auto",
+          height: isSmallScreen ? "auto" : "100%",
           position: isSmallScreen && isEdit && "relative",
         },
         direction: "rtl",
