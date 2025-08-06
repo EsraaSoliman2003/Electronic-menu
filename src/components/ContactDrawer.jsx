@@ -43,7 +43,7 @@ export default function ContactDrawer({ colors, isDrawerOpen }) {
       </Typography>
 
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        {["01065875960"].map((phone, i) => (
+        {["201065875960"].map((phone, i) => (
           <a
             key={`wa-${i}`}
             href={`https://wa.me/${phone}`}
@@ -63,7 +63,7 @@ export default function ContactDrawer({ colors, isDrawerOpen }) {
               }}
             >
               <WhatsAppIcon sx={{ color: "#25D366" }} />
-              {phone}
+              {phone.replace(/^201/, "010")}
             </Typography>
           </a>
         ))}
