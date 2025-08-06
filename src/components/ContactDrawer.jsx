@@ -43,7 +43,7 @@ export default function ContactDrawer({ colors, isDrawerOpen }) {
       </Typography>
 
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        {["01146815591"].map((phone, i) => (
+        {["01065875960"].map((phone, i) => (
           <a
             key={`wa-${i}`}
             href={`https://wa.me/${phone}`}
