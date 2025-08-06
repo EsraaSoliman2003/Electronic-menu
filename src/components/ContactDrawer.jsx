@@ -164,7 +164,13 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                     setEditingType(null);
                   }
                 }}
-                style={{ fontSize: "1rem", padding: "4px 8px" }}
+                style={{
+                  fontSize: "1rem",
+                  padding: "4px 8px",
+                  width: "200px",
+                  outline: "none",
+                  textAlign: "center",
+                }}
                 autoFocus
               />
             ) : (
@@ -239,7 +245,9 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                 fontSize: "1rem",
                 borderRadius: "4px",
                 border: "1px solid #ccc",
-                width: "60%",
+                width: "200px",
+                outline: "none",
+                textAlign: "center",
               }}
             />
           </Box>
@@ -275,7 +283,13 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                     setEditingType(null);
                   }
                 }}
-                style={{ fontSize: "1rem", padding: "4px 8px" }}
+                style={{
+                  fontSize: "1rem",
+                  padding: "4px 8px",
+                  width: "200px",
+                  outline: "none",
+                  textAlign: "center",
+                }}
                 autoFocus
               />
             ) : (
@@ -346,7 +360,9 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                 fontSize: "1rem",
                 borderRadius: "4px",
                 border: "1px solid #ccc",
-                width: "60%",
+                width: "200px",
+                outline: "none",
+                textAlign: "center",
               }}
             />
           </Box>
@@ -385,6 +401,10 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                     fontSize: "1rem",
                     borderRadius: "4px",
                     border: "1px solid #ccc",
+                    width: "300px",
+                    outline: "none",
+                    textAlign: "center",
+                    margin: "auto",
                   }}
                   autoFocus
                   onBlur={() => handleBlurEditInputs(i)}
@@ -400,6 +420,10 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                     fontSize: "1rem",
                     borderRadius: "4px",
                     border: "1px solid #ccc",
+                    width: "300px",
+                    outline: "none",
+                    textAlign: "center",
+                    margin: "auto",
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
@@ -496,7 +520,14 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
               placeholder="نص العنوان"
               value={newAddressText}
               onChange={(e) => setNewAddressText(e.target.value)}
-              style={{ width: "60%", padding: "8px", fontSize: "1rem" }}
+              style={{
+                padding: "8px",
+                fontSize: "1rem",
+                width: "300px",
+                outline: "none",
+                textAlign: "center",
+                margin: "auto",
+              }}
               onBlur={handleBlurAddInputs}
             />
             <input
@@ -516,7 +547,14 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                   setShowAddAddress(false);
                 }
               }}
-              style={{ width: "60%", padding: "8px", fontSize: "1rem" }}
+              style={{
+                padding: "8px",
+                fontSize: "1rem",
+                width: "300px",
+                outline: "none",
+                textAlign: "center",
+                margin: "auto",
+              }}
               onBlur={handleBlurAddInputs}
             />
           </Box>
