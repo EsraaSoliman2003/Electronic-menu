@@ -43,55 +43,75 @@ export default function ContactDrawer({ colors, isDrawerOpen }) {
       </Typography>
 
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        {["0100 123 4567"].map((phone, i) => (
-          <Typography
-            key={i}
-            sx={{
-              fontSize: "1.1rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 1,
-              color: "#1b5e20",
-              fontWeight: 500,
-            }}
+        {["01146815591"].map((phone, i) => (
+          <a
+            key={`wa-${i}`}
+            href={`https://wa.me/${phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none" }}
           >
-            <WhatsAppIcon sx={{ color: "#25D366" }} />
-            {phone}
-          </Typography>
-        ))}
-        {["0100 123 4567", "0112 345 6789"].map((phone, i) => (
-          <Typography
-            key={i}
-            sx={{
-              fontSize: "1.1rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 1,
-              color: "#1b5e20",
-              fontWeight: 500,
-            }}
-          >
-            <CallIcon sx={{ color: "blue" }} />
-            {phone}
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: "1.1rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 1,
+                color: "#1b5e20",
+                fontWeight: 500,
+              }}
+            >
+              <WhatsAppIcon sx={{ color: "#25D366" }} />
+              {phone}
+            </Typography>
+          </a>
         ))}
 
-        <Typography
-          sx={{
-            mt: 3,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 1,
-            color: "#c62828",
-            fontWeight: 500,
-          }}
+        {["01146815591", "01146815591"].map((phone, i) => (
+          <a
+            key={`call-${i}`}
+            href={`tel:${phone}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Typography
+              sx={{
+                fontSize: "1.1rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 1,
+                color: "#1b5e20",
+                fontWeight: 500,
+              }}
+            >
+              <CallIcon sx={{ color: "blue" }} />
+              {phone}
+            </Typography>
+          </a>
+        ))}
+
+        <a
+          href="https://maps.app.goo.gl/ZNAiFEbVqX4jSrXo7?g_st=com.google.maps.preview.copy"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
         >
-          <LocationOnIcon sx={{ color: "#c62828" }} />
-          شارع الجامعة، الجيزة، مصر
-        </Typography>
+          <Typography
+            sx={{
+              mt: 3,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 1,
+              color: "#c62828",
+              fontWeight: 500,
+            }}
+          >
+            <LocationOnIcon sx={{ color: "#c62828" }} />
+            شارع الجيش, منوف, المنوفية, مصر
+          </Typography>
+        </a>
       </Box>
     </Box>
   );
