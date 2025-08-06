@@ -529,6 +529,7 @@ export default function ContactDrawer({ colors, isDrawerOpen, isEdit }) {
                 margin: "auto",
               }}
               onBlur={handleBlurAddInputs}
+              autoFocus
             />
             <input
               ref={addUrlRef}
