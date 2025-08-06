@@ -96,6 +96,7 @@ function App() {
         <ContactDrawer
           colors={colors}
           isDrawerOpen={settingsOpen && !isSmallScreen}
+          isEdit={settingsOpen}
         />
       </div>
     </div>
