@@ -47,6 +47,7 @@ function App() {
         onColorChange={handleColorChange}
         logo={logo}
         onLogoChange={setLogo}
+        isEdit={settingsOpen}
       />
 
       <div style={{ position: "relative", zIndex: 1 }}>
@@ -60,7 +61,7 @@ function App() {
         </div>
 
         {/* أيقونة الإعدادات */}
-        {!settingsOpen && !isSmallScreen && (
+        {!settingsOpen && (
           <div className="fixed top-6 right-6 z-50">
             <IconButton
               onClick={handleToggleSettings}

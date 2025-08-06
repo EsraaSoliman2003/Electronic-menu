@@ -12,6 +12,7 @@ function SettingsDrawer({
   onColorChange,
   logo,
   onLogoChange,
+  isEdit,
 }) {
   const colorFields = [
     { name: "primary", label: "اللون الأساسي" },
@@ -24,7 +25,7 @@ function SettingsDrawer({
 
   return (
     <Drawer
-      variant={isSmallScreen ? "temporary" : "persistent"}
+      variant="persistent"
       anchor={isSmallScreen ? "top" : "right"}
       open={open}
       onClose={onClose}
@@ -34,9 +35,13 @@ function SettingsDrawer({
           padding: 2,
           boxSizing: "border-box",
           backgroundColor: "#fff",
-          overflow: "hidden"
+          overflow: "hidden",
+          overflowY: "auto",
+          height: isSmallScreen && "auto",
+          position: isSmallScreen && isEdit && "relative",
         },
-        direction: "rtl"
+        direction: "rtl",
+        position: isSmallScreen && "relative",
       }}
     >
       {/* زر الإغلاق */}
