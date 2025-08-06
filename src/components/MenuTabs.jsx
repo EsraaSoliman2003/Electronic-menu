@@ -1,11 +1,24 @@
 import { useState } from "react";
 import menuData from "../data/menu.json";
 import EditDialog from "./EditDialog";
+import SortableItem from "./SortableItem";
 import { useMediaQuery } from "@mui/material";
 // import { useTheme } from "@mui/material/styles";
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 function MenuTabs({ colors, isEdit }) {
-  // const theme = useTheme();
   const isSmallScreen = useMediaQuery("(max-width:700px)");
 
   const categories = Object.keys(menuData);
@@ -24,6 +37,7 @@ function MenuTabs({ colors, isEdit }) {
     newData[category] = newData[category].filter((_, i) => i !== itemIndex);
     setData(newData);
   };
+
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [editValues, setEditValues] = useState({
     name: "",
@@ -69,12 +83,28 @@ function MenuTabs({ colors, isEdit }) {
     const item = {
       ...newItem,
       price: parseFloat(newItem.price),
-      image: newItem.image || "/imgs/placeholder.jpg", // صورة افتراضية لو مفيش
+      image: newItem.image || "/imgs/placeholder.jpg",
     };
     newData[selectedCategory] = [...newData[selectedCategory], item];
     setData(newData);
     setAddDialogOpen(false);
     setNewItem({ name: "", details: "", price: "", image: "" });
+  };
+
+  const sensors = useSensors(useSensor(PointerSensor));
+
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+    if (active.id !== over?.id) {
+      const oldIndex = data[selectedCategory].findIndex(
+        (i, idx) => active.id === i.name + idx
+      );
+      const newIndex = data[selectedCategory].findIndex(
+        (i, idx) => over.id === i.name + idx
+      );
+      const reordered = arrayMove(data[selectedCategory], oldIndex, newIndex);
+      setData((prev) => ({ ...prev, [selectedCategory]: reordered }));
+    }
   };
 
   return (
@@ -118,7 +148,6 @@ function MenuTabs({ colors, isEdit }) {
                     colors.primary,
                     0.3
                   );
-
                 if (!isActive) e.currentTarget.style.color = colors.primary;
               }}
               onMouseLeave={(e) => {
@@ -153,114 +182,30 @@ function MenuTabs({ colors, isEdit }) {
       )}
 
       {/* الأصناف */}
-      <div className="space-y-8">
-        {data[selectedCategory].map((item, index) => (
-          <div
-            key={item.name + index}
-            className={`flex flex-col md:flex-row ${
-              index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"
-            } items-center gap-4 mb-8 bg-white/10 rounded-xl shadow-md backdrop-blur-sm p-3`}
-          >
-            {/* الصورة */}
-            <div className="w-full md:w-1/3">
-              <div className="aspect-w-3 aspect-h-2">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover rounded-lg shadow"
-                />
-              </div>
-            </div>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={data[selectedCategory].map((item, index) => item.name + index)}
+          strategy={verticalListSortingStrategy}
+        >
+          {data[selectedCategory].map((item, index) => (
+            <SortableItem
+              key={item.name + index}
+              item={item}
+              index={index}
+              colors={colors}
+              isEdit={isEdit}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              category={selectedCategory}
+            />
+          ))}
+        </SortableContext>
+      </DndContext>
 
-            {/* التفاصيل */}
-            <div
-              style={{
-                width: "100%",
-                maxWidth: "600px",
-                margin: "0 auto",
-                padding: "16px",
-                backgroundColor: "rgba(17, 24, 39, 0.7)",
-                borderRadius: "12px",
-                boxShadow: "inset 0 2px 4px rgba(0,0,0,0.5)",
-                color: "white",
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "1.25rem",
-                  fontWeight: "600",
-                  color: colors.white,
-                }}
-              >
-                {item.name}
-              </h3>
-              <p
-                style={{
-                  fontSize: "0.95rem",
-                  color: colors.white,
-                  margin: "0.5rem 0",
-                }}
-              >
-                {item.details}
-              </p>
-              <p
-                style={{
-                  color: colors.primary,
-                  fontSize: "1.125rem",
-                  fontWeight: "bold",
-                }}
-              >
-                ${item.price}
-              </p>
-
-              {isEdit && (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    gap: "1rem",
-                    marginTop: "0.5rem",
-                  }}
-                >
-                  <button
-                    onClick={() => handleEdit(selectedCategory, index)}
-                    style={{
-                      backgroundColor: "#2563eb",
-                      color: "white",
-                      padding: "0.25rem 0.75rem",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    تعديل
-                  </button>
-
-                  <button
-                    onClick={() => handleDelete(selectedCategory, index)}
-                    style={{
-                      backgroundColor: "#dc2626",
-                      color: "white",
-                      padding: "0.25rem 0.75rem",
-                      border: "none",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    حذف
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
       <EditDialog
         open={editDialogOpen}
         onClose={() => setEditDialogOpen(false)}

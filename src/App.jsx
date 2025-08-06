@@ -60,7 +60,7 @@ function App() {
         </div>
 
         {/* أيقونة الإعدادات */}
-        {!settingsOpen && (
+        {!settingsOpen && !isSmallScreen && (
           <div className="fixed top-6 right-6 z-50">
             <IconButton
               onClick={handleToggleSettings}

@@ -1,18 +1,21 @@
 {
   "العروض": [
     {
+      "id": 1,
       "name": "وجبة عائلية مشاوي",
       "price": "180",
       "image": "/imgs/offer1.png",
       "details": "مكس مشاوي + أرز + سلطة + بطاطس + 4 عيش"
     },
     {
+      "id": 2,
       "name": "عرض شاورما دبل",
       "price": "70",
       "image": "/imgs/offer2.png",
       "details": "2 شاورما لحم أو دجاج + بطاطس + مشروب"
     },
     {
+      "id": 3,
       "name": "عرض اقتصادي",
       "price": "55",
       "image": "/imgs/offer3.png",
@@ -21,30 +24,35 @@
   ],
   "المشويات": [
     {
+      "id": 1,
       "name": "شيش طاووق",
       "price": "60",
       "image": "/imgs/plate1.png",
       "details": "دجاج متبل مشوي على الفحم + أرز + سلطة"
     },
     {
+      "id": 2,
       "name": "كفتة مشوية",
       "price": "58",
       "image": "/imgs/plate2.png",
       "details": "كفتة لحم مشوية + طحينة + عيش بلدي"
     },
     {
+      "id": 3,
       "name": "ريش ضاني",
       "price": "85",
       "image": "/imgs/plate3.png",
       "details": "ريش ضاني متبلة + خضار مشوي + أرز بسمتي"
     },
     {
+      "id": 4,
       "name": "صدور دجاج مشوي",
       "price": "62",
       "image": "/imgs/plate4.png",
       "details": "دجاج مشوي + بطاطس مشوية + سلطة"
     },
     {
+      "id": 5,
       "name": "مكس مشاوي",
       "price": "95",
       "image": "/imgs/plate5.png",
@@ -53,30 +61,35 @@
   ],
   "الساندويتشات": [
     {
+      "id": 1,
       "name": "شاورما لحم",
       "price": "40",
       "image": "/imgs/sandwitch1.png",
       "details": "لحم شاورما + طحينة + مخلل"
     },
     {
+      "id": 2,
       "name": "شاورما دجاج",
       "price": "38",
       "image": "/imgs/sandwitch2.png",
       "details": "شاورما دجاج + ثومية + بطاطس"
     },
     {
+      "id": 3,
       "name": "سجق",
       "price": "35",
       "image": "/imgs/sandwitch3.png",
       "details": "سجق بلدي + بصل + فلفل ألوان"
     },
     {
+      "id": 4,
       "name": "كبدة",
       "price": "36",
       "image": "/imgs/sandwitch4.png",
       "details": "كبدة اسكندراني + طماطم + شطة"
     },
     {
+      "id": 5,
       "name": "طعمية",
       "price": "20",
       "image": "/imgs/sandwitch5.png",

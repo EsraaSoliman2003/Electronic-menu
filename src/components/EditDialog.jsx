@@ -18,8 +18,21 @@ function EditDialog({
   isAdding = false,
 }) {
   return (
-    <Dialog open={open} onClose={onClose} dir="rtl">
-      <DialogTitle sx={{ textAlign: "center", fontWeight: "bold", fontSize: "1.25rem" }}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      dir="rtl"
+      disableScrollLock
+      PaperProps={{
+        sx: {
+          width: "500px",
+          maxWidth: "90%",
+        },
+      }}
+    >
+      <DialogTitle
+        sx={{ textAlign: "center", fontWeight: "bold", fontSize: "1.25rem" }}
+      >
         {title}
       </DialogTitle>
 
@@ -33,7 +46,9 @@ function EditDialog({
         >
           {isAdding && (
             <Box>
-              <Typography sx={{ fontSize: "0.95rem", fontWeight: "500", mb: 1 }}>
+              <Typography
+                sx={{ fontSize: "0.95rem", fontWeight: "500", mb: 1 }}
+              >
                 صورة العنصر
               </Typography>
               <input
@@ -78,7 +93,13 @@ function EditDialog({
 
           {/* الاسم */}
           <div>
-            <label style={{ display: "block", marginBottom: "6px", fontWeight: "500" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "6px",
+                fontWeight: "500",
+              }}
+            >
               الاسم
             </label>
             <input
@@ -98,7 +119,13 @@ function EditDialog({
 
           {/* الوصف */}
           <div>
-            <label style={{ display: "block", marginBottom: "6px", fontWeight: "500" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "6px",
+                fontWeight: "500",
+              }}
+            >
               الوصف
             </label>
             <textarea
@@ -119,7 +146,13 @@ function EditDialog({
 
           {/* السعر */}
           <div>
-            <label style={{ display: "block", marginBottom: "6px", fontWeight: "500" }}>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "6px",
+                fontWeight: "500",
+              }}
+            >
               السعر
             </label>
             <input
